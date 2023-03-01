@@ -1,20 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import * as fs from 'fs';
 import { useRouter } from "next/router";
 
-// setp 1: Find the file corresponding tothe slug
+// setp 1: Find the file corresponding to the slug
 // setp 2: Populate them inside the page.
-const slug = () => {
-  const router = useRouter();
-  console.log(router.query);
-  const { slug } = router.query;
+const Slug = (props) => {
+  console.log();
+  const [blog, setblog] = useState(props.myBlog);
+
   return (
     <>
       <div className="section flex flex-col items-center md:w-5/6">
-        <h1 className="text-3xl font-semibold mb-5">Title: {slug}</h1>
-        <p></p>
+        <h1 className="text-3xl font-semibold mb-5">{blog && blog.title}</h1>
+        <p>{blog && blog.content}</p>
       </div>
     </>
   );
 };
 
-export default slug;
+export async function getStaticPaths() {
+  return {
+      paths: [
+          { params: { slug: 'Learn-JavaScript-in-Easy-and-efficient-way' } },
+          { params: { slug: 'Learn-MongoDB-in-Easy-and-efficient-way' } },
+          { params: { slug: 'Learn-NextJS-in-Easy-and-efficient-way' } },
+          { params: { slug: 'Learn-NodeJS-in-Easy-and-efficient-way' } },
+          { params: { slug: 'Learn-ReactJS-in-Easy-and-efficient-way' } },
+          { params: { slug: 'Learn-Tailwind-in-Easy-and-efficient-way' } },
+      ],
+      fallback: true // false or 'blocking'
+  };
+}
+
+
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+  let myBlog = await fs.promises.readFile(`blogdata/${slug}.json`, 'utf-8')
+  return {
+      props: { myBlog: JSON.parse(myBlog) }, // will be passed to the page component as props
+  }
+}
+
+
+export default Slug;
