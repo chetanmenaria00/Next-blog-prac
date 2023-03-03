@@ -30,8 +30,8 @@ export default function Home() {
       </Head>
       <main className="section flex flex-col mb-10">
         <div className="space-y-3 flex flex-col items-center mb-10">
-          <h1 className="text-black z-10 text-4xl md:text-5xl font-bold tracking-wide">
-            Chetan-Blogs
+          <h1 className="text-black z-10 text-3xl md:text-5xl font-bold tracking-wide">
+            &lt;Coding-Blogs/&gt;
           </h1>
           <Image
             className="rounded-xl shadowimg w-2/3 md:w-80"
@@ -54,15 +54,16 @@ export default function Home() {
             return (
               <div
                 key={blogitem.slug}
-                className="w-2/3 space-y-2 border-[2px] p-5 border-black mt-10 flex flex-col justify-start rounded-lg"
+                className="md:w-2/3 space-y-2 border-[2px] p-5 border-black mt-10 flex flex-col justify-start rounded-lg"
               >
                 <Link href={`/blogpost/${blogitem.slug}`}>
                   <h3 className="text-xl md:text-3xl font-semibold hover:underline">
                     {blogitem.title}
                   </h3>
-                  <p className="text-sm md:text-base">
+                  <span className="text-sm md:text-base">
                     {blogitem.content.substr(0, 120)}....
-                  </p>
+                  </span>&nbsp;
+                  <button className="tracking-tight px-3 py-1 border border-black rounded-lg hover:bg-gray-200 hover:text-black text-gray-600">Read More</button>
                 </Link>
               </div>
             );

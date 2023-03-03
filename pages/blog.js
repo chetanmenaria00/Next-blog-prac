@@ -15,7 +15,7 @@ const blog = (props) => {
           return (
             <div
               key={blogitem.slug}
-              className="cursor-pointer w-2/3 space-y-2 border-[2px] shadowimg p-5 border-black rounded-lg mt-10 flex flex-col justify-start"
+              className="cursor-pointer md:w-2/3 space-y-2 border-[2px] shadowimg p-5 border-black rounded-lg mt-10 flex flex-col justify-start"
             >
               <Link href={`/blogpost/${blogitem.slug}`}>
                 <h3 className="text-xl md:text-3xl font-semibold">
