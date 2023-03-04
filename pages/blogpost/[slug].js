@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // setp 1: Find the file corresponding to the slug
 // setp 2: Populate them inside the page.
 const Slug = (props) => {
-  console.log();
+  // console.log();
   const [blog, setblog] = useState(props.myBlog);
   function createMarkup(c) {
     return { __html: c };

@@ -21,7 +21,7 @@ const Contact = () => {
       },
       body: JSON.stringify(data),
     }).then(response => response.text()).then(data => {
-      console.log('Success:', data);
+      // console.log('Success:', data);
       alert("Thanks for contacting us");
       setPhone('')
       setName('')

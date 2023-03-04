@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    console.log("useEffect is running");
+    // console.log("useEffect is running");
     fetch("http://localhost:3000/api/blogs")
       .then((a) => {
         return a.json();

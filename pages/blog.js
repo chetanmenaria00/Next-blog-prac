@@ -5,7 +5,7 @@ import * as fs from 'fs';
 // setp 1: Collect all the files from blogdata directory
 // setp 2: Iterate through the and display them
 const blog = (props) => {
-  console.log(props);
+  // console.log(props);
   const [blogs, setBlogs] = useState(props.allBlogs);
   
   return (
@@ -42,11 +42,11 @@ export async function getStaticProps(context) {
   let allBlogs = [];
   for (const element of data) {
       const item = element;
-      console.log(item)
+      // console.log(item)
       myfile = await fs.promises.readFile(('blogdata/' + item), 'utf-8')
       allBlogs.push(JSON.parse(myfile))
   }
-console.log(allBlogs);
+// console.log(allBlogs);
   return {
       props: { allBlogs }, // will be passed to the page component as props
   }
