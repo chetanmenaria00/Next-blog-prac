@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as fs from 'fs';
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 // setp 1: Find the file corresponding to the slug
 // setp 2: Populate them inside the page.
@@ -23,16 +23,14 @@ const Slug = (props) => {
 };
 
 export async function getStaticPaths() {
+  let allb = await fs.promises.readdir(`blogdata`)
+  allb = allb.map((item) => {
+      return { params: { slug: item.split(".")[0] } }
+  })
+  console.log(allb)
   return {
-    paths: [
-      { params: { slug: 'Learn-JavaScript-in-Easy-and-efficient-way' } },
-      { params: { slug: 'Learn-MongoDB-in-Easy-and-efficient-way' } },
-      { params: { slug: 'Learn-NextJS-in-Easy-and-efficient-way' } },
-      { params: { slug: 'Learn-NodeJS-in-Easy-and-efficient-way' } },
-      { params: { slug: 'Learn-ReactJS-in-Easy-and-efficient-way' } },
-      { params: { slug: 'Learn-Tailwind-in-Easy-and-efficient-way' } },
-    ],
-    fallback: true // false or 'blocking'
+      paths: allb,
+      fallback: true // false or 'blocking'
   };
 }
 
